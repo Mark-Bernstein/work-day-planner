@@ -7,13 +7,14 @@ $(document).ready(function () {
   //create the planner
   function makeThePlanner() {
     var tableDiv = $("<table>");
+
     //adding moment.js for current day of the week, month, day of the month, year, and time
     var m = moment().format("LLLL");
     $("#currentDay").text(m);
     console.log(m);
     
     //get only the hour of current time of day
-    var currentTime = moment().format("h");
+    var currentTime = moment().format("H");
     console.log(currentTime);
 
     //loop through time array
@@ -41,6 +42,8 @@ $(document).ready(function () {
       hourRow.attr("class", [i]);
       saveBtn.attr("data-index", [i]);
       formDiv.attr("id", [i]);
+      timeColumn.attr("data-index", [i+9]);
+
 
       //edit css
       timeColumn.attr("style", "background-color:white;color:black;border-bottom:solid 2px; padding: 20px");
@@ -54,10 +57,9 @@ $(document).ready(function () {
       saveColumn.addClass("saveBtn");
       formDiv.addClass("form-group")
 
-      if (currentTime > saveBtn.attr("data-index")) {
+      if (parseInt(currentTime) > parseInt(timeColumn.attr("data-index"))) {
         hourRow.attr("style", "background-color:lime");
-        console.log(saveBtn.attr("data-index"));
-      } else if (currentTime < saveBtn.attr("data-index")) {
+      } else if (parseInt(currentTime) < parseInt(timeColumn.attr("data-index"))) {
         hourRow.attr("style", "background-color:pink");
       } else {
         hourRow.attr("style", "background-color:red");
@@ -73,9 +75,9 @@ $(document).ready(function () {
     console.log("row selected:" + rowSelected);
     localStorage.setItem("rowChosen", rowSelected);
     var formSelected = $("form#" + rowSelected);
-    console.log("form selected:" + formSelected);
+    //console.log("form selected:" + formSelected);
     var InputArea = formSelected.children().val();
-    console.log("inputArea:" + InputArea);
+    //console.log("inputArea:" + InputArea);
     var localKey = "text" + rowSelected;
     localStorage.setItem(localKey, InputArea);
     displaySavedEvent();
