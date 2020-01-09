@@ -30,7 +30,4 @@ _______________
 
 ![Day_Planner Screenshot](/dayPlannerScreenshot.jpg)
 ____________
-
-Installation
-____________
 No installation necessary. Project is hosted here: https://mark-bernstein.github.io/work-day-planner/
